@@ -16,7 +16,7 @@ import java.sql.Statement;
  **/
 public class SickBed {
 
-    public static void SickBed() throws Exception{
+    public static void go() throws Exception{
         Data data = new Data();
         //定义查询结果集
         ResultSet rs = null;

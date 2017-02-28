@@ -1,5 +1,7 @@
 package cn.notemi.db.core;
 
+import cn.notemi.db.main.Data;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +15,8 @@ import java.sql.Statement;
  * @create 2017/2/27 11:45
  **/
 public class PatientInfo {
-    public static void main(String args[]) throws Exception {
+    public void go() throws Exception {
+        Data data = new Data();
         //定义查询结果集
         ResultSet rs = null;
         //定义Statement
@@ -21,9 +24,9 @@ public class PatientInfo {
         Statement s2 = null;
         //两条Connection连接
         //源数据库
-        Connection cn1 = DriverManager.getConnection("jdbc:sqlserver://127.0.0.1:1433;databaseName=yygl","sa","12345678910");
+        Connection cn1 = DriverManager.getConnection(data.getUrl1(),data.getUser1(),data.getPassword1());
         //目标数据库
-        Connection cn2 = DriverManager.getConnection("jdbc:sqlserver://127.0.0.1:1433;databaseName=yygl2","sa","12345678910");
+        Connection cn2 = DriverManager.getConnection(data.getUrl2(),data.getUser2(),data.getPassword2());
 
         long startTime = 0;//开始时间
         long endTime = 0; //结束时间
@@ -89,5 +92,8 @@ public class PatientInfo {
         }
         endTime = System.currentTimeMillis();
         System.out.println("成功移植数据："+(count-1)+"条，耗时"+(endTime-startTime)/1000+"秒");
+    }
+    public static void main(String args[]) throws Exception {
+
     }
 }
